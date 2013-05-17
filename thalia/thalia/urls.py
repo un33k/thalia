@@ -9,6 +9,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'status', views.StatusViewSet)
 router.register(r'users', views.UserViewSet)
+router.register(r'circles', views.CircleViewSet)
 
 urlpatterns = patterns('',
         url(r'^', include(router.urls)),

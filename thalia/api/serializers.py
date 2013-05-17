@@ -9,7 +9,8 @@ class CircleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Circle
-        fields = ('url', 'circlename', 'description', 'created', 'members')
+        fields = ('url', 'circlename', 'description',
+                  'created', 'members', 'status')
 
 
 class StatusSerializer(serializers.HyperlinkedModelSerializer):
@@ -27,13 +28,13 @@ class StatusSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    circles = serializers.HyperlinkedIdentityField(
-        view_name='user-circles')
     status = serializers.HyperlinkedIdentityField(view_name="user-status")
+    # circles = serializers.HyperlinkedIdentityField(
+    #    view_name='user-circles')
 
     class Meta:
         model = User
-        fields = ('url', 'username', 'circles', 'email', 'status')
+        fields = ('url', 'username', 'email', 'status')
 
 
 class PasswordSerializer(serializers.Serializer):
@@ -44,4 +45,3 @@ class PasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
     username = serializers.CharField(max_length=30)
     password = serializers.CharField(max_length=16)
-

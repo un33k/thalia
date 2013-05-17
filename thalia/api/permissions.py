@@ -32,4 +32,4 @@ class IsMember(permissions.BasePermission):
     the member of the circle
     """
     def has_object_permission(self, request, view, obj):
-        return request.user in obj.members
+        return request.user in obj.members.all()
