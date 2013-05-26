@@ -45,3 +45,17 @@ class PasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
     username = serializers.CharField(max_length=30)
     password = serializers.CharField(max_length=16)
+
+
+class MemberShipSerializer(serializers.Serializer):
+
+    """
+    User as MemberShip
+    """
+    user = serializers.HyperlinkedIdentityField(view_name='user-detail')
+    circle = serializers.HyperlinkedIdentityField(view_name='circle-detail')
+    stage = serializers.CharField(max_length=20)
+
+    class Meta:
+        model = User
+        fields = ('user', 'circle', 'stage')
